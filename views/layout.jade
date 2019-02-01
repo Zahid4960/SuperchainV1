@@ -2,8 +2,8 @@ doctype html
 html(lang='en')
   head
     title Welcome
-    link(href="../stylesheets/bootstrap.css", rel='stylesheet')
-    link(href="../stylesheets/style.css", rel='stylesheet')
+    link(href="/stylesheets/bootstrap.css", rel='stylesheet')
+    link(href="/stylesheets/style.css", rel='stylesheet')
   body   
     .navbar.navbar-default(role='navigation')
       .container
@@ -19,20 +19,17 @@ html(lang='en')
            ul.nav.navbar-nav
              li(class=(title == 'Home' ? 'active' : ''))
                a(href='/') Home
-             li(class=(title == 'Register' ? 'active' : ''))
-               a(href='/users/register') Register
              li  
-               a(href='#') Admin
-             li
                a(href='#') Contacts 
              li(class=(title == 'Login' ? 'active' : ''))
                a(href='/users/login') Login
             ul.nav.navbar-nav.navbar-right
               li
-                a(href='#') Logout  
-
+                a(href='#') Logout 
+                     
+     
      .container
       block content
 
        scrpit(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')   
-       script(src='../javascripts/bootstrap.js')         
+       script(src='/javascripts/bootstrap.js')
