@@ -14,4 +14,12 @@ router.get('/login', function(req, res, next) {
   res.render('login', {title: 'Login'});
 });
 
+router.get('/contact', function(req, res, next) {
+  res.render('contact', {title: 'Contact'});
+});
+
+router.get('/about', function(req, res, next) {
+  res.render('about', {title: 'About'});
+});
+
 module.exports = router;
