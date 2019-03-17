@@ -20,11 +20,17 @@ html(lang='en')
              li(class=(title == 'Home' ? 'active' : ''))
                a(href='/') Home
 
+             li(class=(title == 'Dashboard' ? 'active' : ''))
+               a(href='/users/dashboard') Dashboard 
+
              li(class=(title == 'Contact' ? 'active': ''))  
                a(href='/users/contact') Contact
 
              li(class=(title== 'About' ? 'active': ''))  
                a(href='/users/About') About
+
+             li(class=(title == 'Register' ? 'active' : ''))
+               a(href='/users/register') Register  
 
              li(class=(title == 'Login' ? 'active' : ''))
                a(href='/users/login') Login
