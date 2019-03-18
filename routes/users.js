@@ -1,8 +1,10 @@
-  
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
 var upload = multer({dest: './uploads'});
+
+/* Connect user schema to users routes */
+var user = require('../models/user.js');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -46,14 +48,33 @@ router.post('/register', upload.single('id_pic'), function(req, res, next) {
 
   /* Check for errors at the time of submitting registration form */
   var errors = req.validationErrors();
-
+  
+  /* If gets error then show that errors to registartion page */
   if(errors){
   	res.render('register', {
   		errors: errors
   	});
   }
+  /* If there is no error then create a new user and save that info's into user database*/
   	else{
-  		console.log('No Errors!!!');
+  		var newUser = new user({
+        role: role,
+        name: name,
+        email: email,
+        username: username,
+        password: password,
+        id_pic: id_pic
+      });
+
+      user.createUser(newUser, function(err, user){
+        if(err) throw err
+          console.log(user);
+      });
+
+      //res.flash('success', 'You are successfully registered and now can login !!!');
+      //res.locals.message = req.flash();
+      res.location('/');
+      res.redirect('/'); 
   }
 });
 
