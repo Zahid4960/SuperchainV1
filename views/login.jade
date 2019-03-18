@@ -2,7 +2,8 @@ extends layout
 <!-- Login page -->
 
 block content
- h2.page-header Login
+ h2.page-header Login Page
+ p Please login using the form below
  form(method='post', action='/users/login')
 
  <!-- For selecting role -->
@@ -26,5 +27,4 @@ block content
   input.form-control(name='password', type='password', placeholder='Enter password')
 
   <!-- If all the previous field passes the validaton then it will be successfully loggedin  on clicking the login button -->
-  .form-group
  input.btn.btn-primary(type='submit', name='submit', value='Login')

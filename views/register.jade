@@ -2,7 +2,14 @@ extends layout
 <!-- Registration page -->
 
 block content
- h2.page-header Register
+ h2.page-header Register Page
+ p Please registar using the form below
+ 
+ <!-- For alert message which we will get from registartion form validation -->
+ if errors
+  each error, i in errors
+   div.alert.alert-danger #{error.msg}
+
  form(method='post', action='/users/register', enctype='multipart/form-data')
   
   <!-- For selecting role -->
@@ -38,17 +45,13 @@ block content
   <!-- Confirm password required at the time of registration and if password and confirm password don't match then can't be registar-->
   .form-group
   label Confirm Password
-  input.form-control(name='confirm-password', type='password', placeholder='Enter password for confirmation')
+  input.form-control(name='confirm_password', type='password', placeholder='Enter password for confirmation')
   
-  <!-- Identity card's front pic  required at the time of registration -->
+  <!-- Identity card's pic  required at the time of registration -->
   .form-group
-  label Identity card(Front)
-  input.form-control(name='id_front', type='file')
-
-  <!-- Identity card's back pic  required at the time of registration -->
-  label Identity card(Back)
-  input.form-control(name='id_back', type='file')
+  label Identity Card's Picture
+  input.form-control(name='id_pic', type='file')
 
   <!-- If all the previous field passes the validaton then it will be successfully registared on clicking the registar button -->
- .form-group 
- input.btn.btn-primary(type='submit', name='submit', value='Registar')
+  .form-group
+  input.btn.btn-primary(type='submit', name='submit', value='Registar')
