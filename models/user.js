@@ -1,7 +1,11 @@
 /* Database model named user.js */
 /* For connection with mongodb */
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/SuperchainV1');
+var bcrypt = require('bcryptjs');
+mongoose.connect('mongodb://localhost:27017/SuperchainV1', { useNewUrlParser: true });
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 var db = mongoose.connection;
 
 /* User schema */
@@ -37,5 +41,10 @@ var userSchema = mongoose.Schema({
 We will get all the information from registration form*/
 var user = module.exports = mongoose.model('user', userSchema);
 module.exports.createUser = function(newUser, callback){
-	newUser.save(callback);
+	bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(newUser.password, salt, function(err, hash) {
+    	newUser.password = hash; // converts plain password into hashed encrypted password
+    	newUser.save(callback);
+     });
+ });	
 }

@@ -24,7 +24,7 @@ router.post('/register', upload.single('id_pic'), function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
   var confirm_password = req.body.confirm_password;
- // var id_pic = req.file.id_pic;
+
 
   /* Check identity picture uploaded or not */
   if(req.file){
@@ -71,8 +71,8 @@ router.post('/register', upload.single('id_pic'), function(req, res, next) {
           console.log(user);
       });
 
-      //res.flash('success', 'You are successfully registered and now can login !!!');
-      //res.locals.message = req.flash();
+      req.flash('success', 'You are successfully registered and now can login !!!');
+      res.locals.message = req.flash();
       res.location('/');
       res.redirect('/'); 
   }
