@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
@@ -15,7 +14,8 @@ router.get('/contact', (req, res) => res.render('contact'));
 // contact page
 router.get('/welcome', (req, res) => res.render('welcome'));
 
-// Dashboard
+
+// dashboard page
 router.get('/dashboard', ensureAuthenticated, (req, res) =>
   res.render('dashboard', {
     user: req.user

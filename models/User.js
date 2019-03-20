@@ -10,10 +10,6 @@ const db = mongoose.connection;
 
 /* User schema */
 const UserSchema = mongoose.Schema({
-    /* For user's username */
-	username: {
-		type: String,
-	},
 	/* For user's name */
 	name: {
 		type: String
@@ -31,7 +27,7 @@ const UserSchema = mongoose.Schema({
 		type: String
 	},
 	/* For user's identity card picture */
-	id_pic: {
+	nid: {
 		type: String
 	},
 	/* For current date */

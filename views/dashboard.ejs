@@ -1,3 +1,7 @@
-<h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Welcome <%= user.name %></p>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
+<div class="container"><% include ./partials/header2 %></div>
+<br>
+<br>
+<div class="jumbotron">
+  <h1 class="display-4">Welcome <%= user.name %></h1>
+  <p class="lead">You're loggedin as <%= user.role %> manager and your email is <%= user.email %></p>
+</div>

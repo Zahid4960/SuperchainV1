@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const { ensureAuthenticated } = require('../config/auth');
+
 // Load User model
 const User = require('../models/User');
 
@@ -16,13 +18,15 @@ router.get('/register', (req, res) => res.render('register'));
 
 // Register
 router.post('/register', upload.single('nid'),(req, res) => {
-  const { username, name, email, password, password2, role, nid } = req.body;
+  const { name, email, password, password2, role, nid } = req.body;
   let errors = [];
 
-  if (!username || !role || !nid || !name || !email || !password || !password2) {
+  // check for blank fields 
+  if ( !role || !nid || !name || !email || !password || !password2) {
     errors.push({ msg: 'Please enter all fields' });
   }
 
+  // check for password match or not
   if (password != password2) {
     errors.push({ msg: 'Passwords do not match' });
   }
@@ -31,21 +35,10 @@ router.post('/register', upload.single('nid'),(req, res) => {
     errors.push({ msg: 'Password must be at least 6 characters' });
   }
 
-   /* Check identity picture uploaded or not */
-  if(req.file){
-    console.log("Uploaded Identity Picture!!!");
-    var id_pic = req.file.filename;
-  }
-  else{
-    console.log("Identity Picture is not Uploaded !!! ");
-    var id_pic = "noImage.jpg";
-  }
-
   if (errors.length > 0) {
     res.render('register', {
       errors,
       role,
-      username,
       email,
       name,
       password,
@@ -59,7 +52,6 @@ router.post('/register', upload.single('nid'),(req, res) => {
         res.render('register', {
           errors,
           role,
-          username,
           email,
           name,
           password,
@@ -68,7 +60,6 @@ router.post('/register', upload.single('nid'),(req, res) => {
       } else {
         const newUser = new User({
           role,
-          username,
           name,
           email,
           password,
@@ -96,7 +87,7 @@ router.post('/register', upload.single('nid'),(req, res) => {
   }
 });
 
-// Login
+ // Login
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/dashboard',
@@ -104,6 +95,7 @@ router.post('/login', (req, res, next) => {
     failureFlash: true
   })(req, res, next);
 });
+
 
 // Logout
 router.get('/logout', (req, res) => {
