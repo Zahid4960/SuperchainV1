@@ -1,101 +1,115 @@
-var express = require('express');
-var router = express.Router();
-var multer = require('multer');
-var upload = multer({dest: './uploads'});
-
-/* Connect user schema to users routes */
-var user = require('../models/user.js');
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-/* Routes for register for get method */
-router.get('/register', function(req, res, next) {
-  res.render('register', {title: 'Register'});
-});
-
-/* Routes for register for post method */
-router.post('/register', upload.single('id_pic'), function(req, res, next) {
-  var role = req.body.role;
-  var name = req.body.name;
-  var email = req.body.email;
-  var username = req.body.username;
-  var password = req.body.password;
-  var confirm_password = req.body.confirm_password;
+const multer = require('multer');
+const upload = multer({dest: './uploads'});
+const express = require('express');
+const router = express.Router();
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
+// Load User model
+const User = require('../models/User');
 
 
-  /* Check identity picture uploaded or not */
+// Login Page
+router.get('/login', (req, res) => res.render('login'));
+
+// Register Page
+router.get('/register', (req, res) => res.render('register'));
+
+// Register
+router.post('/register', upload.single('nid'),(req, res) => {
+  const { username, name, email, password, password2, role, nid } = req.body;
+  let errors = [];
+
+  if (!username || !role || !nid || !name || !email || !password || !password2) {
+    errors.push({ msg: 'Please enter all fields' });
+  }
+
+  if (password != password2) {
+    errors.push({ msg: 'Passwords do not match' });
+  }
+
+  if (password.length < 6) {
+    errors.push({ msg: 'Password must be at least 6 characters' });
+  }
+
+   /* Check identity picture uploaded or not */
   if(req.file){
-  	console.log("Uploaded Identity Picture!!!");
-  	var id_pic = req.file.filename;
+    console.log("Uploaded Identity Picture!!!");
+    var id_pic = req.file.filename;
   }
   else{
-  	console.log("Identity Picture is not Uploaded !!! ");
-  	var id_pic = "noImage.jpg";
+    console.log("Identity Picture is not Uploaded !!! ");
+    var id_pic = "noImage.jpg";
   }
 
-  /* Form validation for registration form */
-  req.checkBody('role', 'Role field is required').notEmpty();
-  req.checkBody('name', 'Name field is required').notEmpty();
-  req.checkBody('email', 'Email field is required').notEmpty();
-  req.checkBody('email', 'Email is not valid').isEmail();
-  req.checkBody('username', 'Username field is required').notEmpty();
-  req.checkBody('password', 'Password field is required').notEmpty();
-  req.checkBody('confirm_password', 'Password do not match').equals(req.body.password);
-  //req.checkfile('id_pic', 'Identity Picture field is required').notEmpty();
+  if (errors.length > 0) {
+    res.render('register', {
+      errors,
+      role,
+      username,
+      email,
+      name,
+      password,
+      password2,
+      nid
+    });
+  } else {
+    User.findOne({ email: email }).then(user => {
+      if (user) {
+        errors.push({ msg: 'Email already exists' });
+        res.render('register', {
+          errors,
+          role,
+          username,
+          email,
+          name,
+          password,
+          password2
+        });
+      } else {
+        const newUser = new User({
+          role,
+          username,
+          name,
+          email,
+          password,
+          nid
+        });
 
-  /* Check for errors at the time of submitting registration form */
-  var errors = req.validationErrors();
-  
-  /* If gets error then show that errors to registartion page */
-  if(errors){
-  	res.render('register', {
-  		errors: errors
-  	});
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser
+              .save()
+              .then(user => {
+                req.flash(
+                  'success_msg',
+                  'You are now registered and can log in'
+                );
+                res.redirect('/users/login');
+              })
+              .catch(err => console.log(err));
+          });
+        });
+      }
+    });
   }
-  /* If there is no error then create a new user and save that info's into user database*/
-  	else{
-  		var newUser = new user({
-        role: role,
-        name: name,
-        email: email,
-        username: username,
-        password: password,
-        id_pic: id_pic
-      });
-
-      user.createUser(newUser, function(err, user){
-        if(err) throw err
-          console.log(user);
-      });
-
-      req.flash('success', 'You are successfully registered and now can login !!!');
-      res.locals.message = req.flash();
-      res.location('/');
-      res.redirect('/'); 
-  }
 });
 
-/* Routes for login for get method */
-router.get('/login', function(req, res, next) {
-  res.render('login', {title: 'Login'});
+// Login
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  })(req, res, next);
 });
 
-/* Routes for dashboard for get method */
-router.get('/dashboard', function(req, res, next) {
-  res.render('dashboard', {title: 'Dashboard'});
-});
-
-/* Routes for contact for get method */
-router.get('/contact', function(req, res, next) {
-  res.render('contact', {title: 'Contact'});
-});
-
-/* Routes for about for get method */
-router.get('/about', function(req, res, next) {
-  res.render('about', {title: 'About'});
+// Logout
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success_msg', 'You are logged out');
+  res.redirect('/users/login');
 });
 
 module.exports = router;
