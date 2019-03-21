@@ -10,7 +10,12 @@
         <!-- for role selection -->
         <div class="form-group">
           <label for="role">Role</label>
-          <select name="role" class="form-control" id="role" type="role">
+          <select name="role" ,
+            class="form-control",
+             id="role",
+             type="role"
+             value="<%= typeof role != 'undefined' ? role : '' %>"
+             >
              <option value="admin">Admin Manager</option>
              <option value="field">Field Manager</option>
              <option value="production">Production Manager</option>

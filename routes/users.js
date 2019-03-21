@@ -5,7 +5,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { ensureAuthenticated } = require('../config/auth');
-
+var async = require('async');
 // Load User model
 const User = require('../models/User');
 
@@ -88,13 +88,46 @@ router.post('/register', upload.single('nid'),(req, res) => {
 });
 
  // Login
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/users/login',
-    failureFlash: true
-  })(req, res, next);
-});
+
+router.post('/login', (req, res, next) =>{
+   // const {email, passport} = req.body;
+   // const validate = User.findOne({email: email}, {role: "admin"}).then(user =>{
+    //   if(validate){
+      passport.authenticate('local', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/users/login',
+        failureFlash: true
+      })(req, res, next);
+   // }
+   // });
+});  
+        
+
+/*router.post('/login', (req, res, next) => {
+         passport.authenticate('local', {
+          if User.find({ email: email},
+            {role: admin}).then( user =>{
+          if( role = 'admin'){
+         successRedirect: '/admin',
+         failureRedirect: '/users/login',
+         failureFlash: true
+         })(req, res, next);
+      });
+
+      else if( role = 'field'){
+        passport.authenticate('local', {
+          successRedirect: '/field',
+         failureRedirect: '/users/login',
+         failureFlash: true
+         })(req, res, next);
+      }
+  
+
+  });
+ 
+}); */
+
+
 
 
 // Logout

@@ -22,4 +22,39 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>
   })
 );
 
+// admin page
+router.get('/admin', ensureAuthenticated, (req, res) =>
+  res.render('admin', {
+    user: req.user
+  })
+);
+
+// admin page
+router.get('/field', ensureAuthenticated, (req, res) =>
+  res.render('field', {
+    user: req.user
+  })
+);
+
+// production page
+router.get('/production', ensureAuthenticated, (req, res) =>
+  res.render('production', {
+    user: req.user
+  })
+);
+
+// quality page
+router.get('/quality', ensureAuthenticated, (req, res) =>
+  res.render('quality', {
+    user: req.user
+  })
+);
+
+// transport page
+router.get('/transport', ensureAuthenticated, (req, res) =>
+  res.render('transport', {
+    user: req.user
+  })
+);
+
 module.exports = router;
