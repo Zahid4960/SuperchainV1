@@ -100,34 +100,6 @@ router.post('/login', (req, res, next) =>{
    // });
 });  
         
-
-/*router.post('/login', (req, res, next) => {
-         passport.authenticate('local', {
-          if User.find({ email: email},
-            {role: admin}).then( user =>{
-          if( role = 'admin'){
-         successRedirect: '/admin',
-         failureRedirect: '/users/login',
-         failureFlash: true
-         })(req, res, next);
-      });
-
-      else if( role = 'field'){
-        passport.authenticate('local', {
-          successRedirect: '/field',
-         failureRedirect: '/users/login',
-         failureFlash: true
-         })(req, res, next);
-      }
-  
-
-  });
- 
-}); */
-
-
-
-
 // Logout
 router.get('/logout', (req, res) => {
   req.logout();

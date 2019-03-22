@@ -13,7 +13,35 @@
 </head>
   <body>
     <style type="text/css">
-      /*sticky header position*/
+    /* Minimum height for body*/
+       body {
+          min-height: auto;
+      }
+  /* background color of nav and minimum height at the time of scrolling*/
+      nav {
+        background: #eaebec;
+        min-height: 100px;
+     }
+     .navbar-brand{
+        color: red;
+     }
+     #topheader .navbar-nav li > a {
+        text-transform: capitalize;
+        color: #333;
+        transition: background-color .2s, color .2s;
+  
+       &:hover,
+       &:focus {
+       background-color: #111111;
+       color: #fff;
+    }
+  }
+
+    #topheader .navbar-nav li.active > a {
+       background-color: #333;
+       color: #fff;
+    }
+     /*sticky header position*/
         .sticky.is-sticky {
           position: fixed;
           left: 0;
@@ -22,18 +50,10 @@
           z-index: 1000;
           width: 100%;
        }
-    /* Minimum height for body*/
-       body {
-          min-height: 900px;
-      }
-  /* background color of nav and minimum height at the time of scrolling*/
-      nav {
-        background: #eaebec;
-        min-height: 100px;
-     }
     </style>
   <!--top header-->
         <header >
+          <div id="topheader">
             <!--most top info -->
             <div style="height: 50px; background: #f2f9ee"></div>
             <!-- End most top info -->
@@ -43,13 +63,25 @@
                   <!-- navbar brand area as Superchain-->
                     <a class="navbar-brand" href="/">Superchain</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon" class="sr-only"></span> 
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav pull-right">
+                          <!-- for home -->
+                            <li class="nav-item" >
+                                <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                            </li>
                            <!-- for dashboard -->
-                            <li class="nav-item">
+                            <li class="nav-item" >
                                 <a class="nav-link" href="/dashboard">Dashboard</a>
+                            </li>
+                             <!-- for inquiry -->
+                            <li class="nav-item" >
+                                <a class="nav-link" href="/inquiry">Inquiry</a>
                             </li>
                           <!-- for conatct -->
                             <li class="nav-item">
@@ -74,6 +106,7 @@
                     </div>
                 </div>
             </nav>
+           </div> 
         </header>
         <!-- End top header-->
 
@@ -109,6 +142,11 @@
                     // On page load
                     stickyToggle(sticky, stickyWrapper, $(window));
                 });
+            });
+          // Javascript code for active class
+            $( '#topheader .navbar-nav a' ).on( 'click', function () {
+            $( '#topheader .navbar-nav' ).find( 'li.active' ).removeClass( 'active' );
+            $( this ).parent( 'li' ).addClass( 'active' );
             });
         </script>
   </body>

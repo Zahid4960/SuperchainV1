@@ -11,9 +11,15 @@ router.get('/about', (req, res) => res.render('about'));
 // contact page
 router.get('/contact', (req, res) => res.render('contact'));
 
-// contact page
-router.get('/welcome', (req, res) => res.render('welcome'));
+// issues page
+router.get('/issues', ensureAuthenticated,(req, res) => 
+  res.render('issues', {
+    user: req.user
+    })
+  );
 
+// inquiry page
+router.get('/inquiry', (req,res) => res.render('inquiry'));
 
 // dashboard page
 router.get('/dashboard', ensureAuthenticated, (req, res) =>

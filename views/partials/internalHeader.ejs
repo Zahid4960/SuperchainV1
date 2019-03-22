@@ -24,7 +24,7 @@
        }
     /* Minimum height for body*/
        body {
-          min-height: 900px;
+          min-height: auto;
       }
   /* background color of nav and minimum height at the time of scrolling*/
       nav {
@@ -56,6 +56,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin">Admin</a>
                             </li>
+                              <!-- for send -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/send">Send</a>
+                            </li>
+                              <!-- for receive -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/receive">Received</a>
+                            </li>
                               <!-- for registration -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/users/register">Registration</a>
@@ -85,6 +93,14 @@
                                 <a class="nav-link" href="/transport">Transport</a>
                             </li>
                             <% } %>
+                              <!-- for issues -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/issues">Issues</a>
+                            </li>
+                              <!-- for inquiry -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/inquiry">Inquiry</a>
+                            </li>
                             <!-- for logout -->
                             <li class="nav-item">
                                 <a class="btn btn-primary" href="/users/logout">Logout</a>
