@@ -26,10 +26,6 @@ const UserSchema = mongoose.Schema({
 	password: {
 		type: String
 	},
-	/* For user's identity card picture */
-	nid: {
-		type: String
-	},
 	/* For current date */
 	date: {
     type: Date,

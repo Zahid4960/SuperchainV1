@@ -1,5 +1,5 @@
 const multer = require('multer');
-const upload = multer({dest: './uploads'});
+//const upload = multer({dest: './uploads'});
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');

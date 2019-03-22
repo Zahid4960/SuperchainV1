@@ -25,8 +25,7 @@
             <select name="role" ,
               class="form-control",
               id="role",
-              type="role"
-              value="<%= typeof role != 'undefined' ? role : '' %>">
+              type="role">
                 <option value="admin">Admin Manager</option>
                 <option value="field">Field Manager</option>
                 <option value="production">Production Manager</option>
@@ -77,17 +76,6 @@
               class="form-control"
               placeholder="Confirm Password"
               value="<%= typeof password2 != 'undefined' ? password2 : '' %>"/>
-        </div>
-        <!-- for nid pic upload field -->
-        <div class="form-group">
-          <label for="nid">Nid Picture</label>
-           <input 
-            type="file" 
-            id="nid" 
-            name="nid"
-            class="form-control"
-            placeholder="Upload NID picture"
-            value="<%= typeof nid != 'undefined' ? nid : '' %>" >
         </div>
         <!-- Button for register -->
           <button type="submit" class="btn btn-primary btn-block">

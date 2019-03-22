@@ -1,5 +1,5 @@
 const multer = require('multer');
-const upload = multer({dest: './uploads'});
+//const upload = multer({dest: './uploads'});
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -17,12 +17,12 @@ router.get('/login', (req, res) => res.render('login'));
 router.get('/register', (req, res) => res.render('register'));
 
 // Register
-router.post('/register', upload.single('nid'),(req, res) => {
+router.post('/register', (req, res) => {
   const { name, email, password, password2, role, nid } = req.body;
   let errors = [];
 
   // check for blank fields 
-  if ( !role || !nid || !name || !email || !password || !password2) {
+  if ( !role || !name || !email || !password || !password2) {
     errors.push({ msg: 'Please enter all fields' });
   }
 
@@ -42,8 +42,7 @@ router.post('/register', upload.single('nid'),(req, res) => {
       email,
       name,
       password,
-      password2,
-      nid
+      password2
     });
   } else {
     User.findOne({ email: email }).then(user => {
@@ -62,8 +61,7 @@ router.post('/register', upload.single('nid'),(req, res) => {
           role,
           name,
           email,
-          password,
-          nid
+          password
         });
 
         bcrypt.genSalt(10, (err, salt) => {
