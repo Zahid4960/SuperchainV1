@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
-var async = require('async', true);
 
 const Field = require('../models/Field');
 
@@ -31,13 +30,16 @@ router.get('/messages', ensureAuthenticated,(req, res) =>
 // inquiry page for get method
 router.get('/search', (req,res) => res.render('search'));
 
-// dashboard page for get method
-router.get('/dashboard', ensureAuthenticated, (req, res) =>
-  res.render('dashboard', {
-    user: req.user
-    field: req.field
-  })
-);
+// dashboard page for get method  
+ router.get('/dashboard', ensureAuthenticated, (req, res) => {
+   let field = Field.find({})
+   .sort({date:'desc'}).exec( (err, field) => {
+    res.render('dashboard', {
+      user: req.user,
+      "field": field
+        })
+     });
+  });
 
 // admin page for get method
 router.get('/admin', ensureAuthenticated, (req, res) =>
@@ -50,7 +52,6 @@ router.get('/admin', ensureAuthenticated, (req, res) =>
 router.get('/field', ensureAuthenticated, (req, res) =>
   res.render('field', {
     user: req.user
-    field: req.field
   })
 );
 

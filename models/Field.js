@@ -18,7 +18,7 @@ const FieldSchema = mongoose.Schema({
 		type: String
 	},
 	/* For field's field location */
-fieldLocation: {
+    fieldLocation: {
 		type: String
 	},
 	/* For field's farmer name */
@@ -40,7 +40,7 @@ fieldLocation: {
   }
 });
 
-/* For creating new user and save their information into mongodb database(SuperchainV1).
-We will get all the information from registration form*/
+/* For creating new field and save their information into mongodb database(SuperchainV1).
+We will get all the information from upload field data form*/
 const Field = mongoose.model('Field', FieldSchema);
 module.exports = Field;

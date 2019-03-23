@@ -11,7 +11,7 @@
 <body>
 	<!-- linked internalHeader -->
 	<% if(user) {%>
-	<div><% include ./partials/internalHeader %></div>
+	<div><% include ./partials/internalHeader %></div> 
 	<% } %>
 	<br>
 	<!-- jumbotron of dashboard page  -->
@@ -19,10 +19,18 @@
   		<h1 class="display-4">Welcome <%= user.name %></h1>
   			<p class="lead">You're loggedin as <%= user.role %> manager and your email is <%= user.email %></p>
 	</div>
-
-	<div class="jumbotron">
-		<p>Product ID: <% field.productID%></p>
-	</div>
+	<% for(var i=0; i < field.length; i++) { %>
+    <div class="jumbotron">
+       <p class="lead">
+         <%= field[i].productID %><br>
+         <%= field[i].productName %><br>
+         <%= field[i].fieldLocation %><br>
+         <%= field[i].farmerName %><br>
+         <%= field[i].farmerMobile %><br>
+         <%= field[i].farmerNid %><br>
+        </p>
+    </div>
+<% } %>
 	
 	<br>
 	<br>
