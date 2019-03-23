@@ -15,7 +15,7 @@
       <div class="col-md-6 m-auto">
         <div class="card card-body">
           <h1 class="text-center mb-3">
-            <i class="fas fa-phone"></i> Contact us
+            <i class="fas fa-phone"></i> Contact Us
           </h1>
             <% include ./partials/messages %>
             <form action="/contact" method="POST">
@@ -52,7 +52,7 @@
                   placeholder="Enter Email"
                   value="<%= typeof email != 'undefined' ? email : '' %>"/>
             </div>
-            <!-- for <main></main>essage  field -->
+            <!-- for message  field -->
             <div class="form-group">
               <label for="message">Message</label>
                 <textarea 
@@ -63,9 +63,9 @@
                 value="<%= typeof message != 'undefined' ? message : '' %>" >
                 </textarea>
             </div>
-            <!-- Button for register -->
+            <!-- Button for contact -->
               <button type="submit" class="btn btn-primary btn-block">
-                  Send Message
+                  Contact
               </button>
       </form>
     </div>

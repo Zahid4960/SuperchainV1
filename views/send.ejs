@@ -12,6 +12,57 @@
 	<!-- externalHeader link-->
 	<div><% include ./partials/internalHeader %></div>
 	<!-- footer link -->
+	<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-user-plus"></i> Register
+        </h1>
+      <% include ./partials/messages %>
+      <form action="/admin/send" method="POST">
+        <!-- for role selection or department selection  -->
+        <div class="form-group">
+          <label for="role">Department</label>
+            <select name="department" ,
+              class="form-control",
+              id="department",
+              type="department">
+                <option value="field">Field Department</option>
+                <option value="production">Production Department</option>
+                <option value="quality">Quality Control Department</option>
+                <option value="transport">Transport Department</option>
+            </select>
+          </div>
+        <!-- for subject field -->
+        <div class="form-group">
+          <label for="name">Subject</label>
+            <input
+              type="subject"
+              id="subject"
+              name="subject"
+              class="form-control"
+              placeholder="Enter subject"
+              value="<%= typeof subject != 'undefined' ? subject : '' %>"/>
+        </div>
+          <!-- for message  field -->
+        <div class="form-group">
+          <label for="message">Message</label>
+            <textarea 
+              type="message"
+              id="message" 
+              name="message"
+              class="form-control"
+              value="<%= typeof message != 'undefined' ? message : '' %>" >
+            </textarea>
+        </div> 
+        <!-- Button for send -->
+          <button type="submit" class="btn btn-primary btn-block">
+              Send
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
 	<br>
 	<br>
    <div><% include ./partials/footer %></div>

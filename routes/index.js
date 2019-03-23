@@ -19,7 +19,7 @@ router.get('/issues', ensureAuthenticated,(req, res) =>
   );
 
 // inquiry page
-router.get('/inquiry', (req,res) => res.render('inquiry'));
+router.get('/search', (req,res) => res.render('search'));
 
 // dashboard page
 router.get('/dashboard', ensureAuthenticated, (req, res) =>
