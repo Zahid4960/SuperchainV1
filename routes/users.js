@@ -10,13 +10,13 @@ var async = require('async');
 const User = require('../models/User');
 
 
-// Login Page
+// Login Page for get method
 router.get('/login', (req, res) => res.render('login'));
 
-// Register Page
+// Register Page for get method
 router.get('/register', (req, res) => res.render('register'));
 
-// Register
+// Register page for post method
 router.post('/register', (req, res) => {
   const { name, email, password, password2, role, nid } = req.body;
   let errors = [];
@@ -30,7 +30,7 @@ router.post('/register', (req, res) => {
   if (password != password2) {
     errors.push({ msg: 'Passwords do not match' });
   }
-
+// check for password length if it less than 6 then don't accept
   if (password.length < 6) {
     errors.push({ msg: 'Password must be at least 6 characters' });
   }
@@ -85,22 +85,16 @@ router.post('/register', (req, res) => {
   }
 });
 
- // Login
-
+ // Login page for post method
 router.post('/login', (req, res, next) =>{
-   // const {email, passport} = req.body;
-   // const validate = User.findOne({email: email}, {role: "admin"}).then(user =>{
-    //   if(validate){
       passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/users/login',
         failureFlash: true
       })(req, res, next);
-   // }
-   // });
 });  
         
-// Logout
+// Logout for get method
 router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');

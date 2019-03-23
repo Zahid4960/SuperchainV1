@@ -11,6 +11,88 @@
 <body>
 	<!-- linked internalHeader -->
 	<div><% include ./partials/internalHeader %></div>
+	<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-tractor"></i> Field
+        </h1>
+      <% include ./partials/messages %>
+      <form action="/field" method="POST">
+        <!-- for field product id -->
+        <div class="form-group">
+          <label for="productID">Product ID</label>
+            <input
+              type="productID"
+              id="productID"
+              name="productID"
+              class="form-control"
+              placeholder="Enter Product ID"
+              value="<%= typeof productID != 'undefined' ? productID : '' %>" />
+        </div>
+           <!-- for field product name -->
+        <div class="form-group">
+          <label for="productName">Product Name</label>
+            <input
+              type="productName"
+              id="productName"
+              name="productName"
+              class="form-control"
+              placeholder="Enter product name"
+              value="<%= typeof productName != 'undefined' ? productName : '' %>" />
+        </div>
+           <!-- for field location -->
+        <div class="form-group">
+          <label for="fieldLocation">Field Location</label>
+            <input
+              type="fieldLocation"
+              id="fieldLocation"
+              name="fieldLocation"
+              class="form-control"
+              placeholder="Enter field location"
+              value="<%= typeof fieldLocation != 'undefined' ? fieldLocation : '' %>" />
+        </div>
+             <!-- for field farmer name -->
+        <div class="form-group">
+          <label for="farmerName">Farmer Name</label>
+            <input
+              type="farmerName"
+              id="farmerName"
+              name="farmerName"
+              class="form-control"
+              placeholder="Enter farmer name"
+              value="<%= typeof farmerName != 'undefined' ? farmerName : '' %>" />
+        </div>
+               <!-- for field farmer mobile -->
+        <div class="form-group">
+          <label for="farmerMobile">Farmer Mobile Number</label>
+            <input
+              type="farmerMobile"
+              id="farmerMobile"
+              name="farmerMobile"
+              class="form-control"
+              placeholder="Enter farmer mobile number"
+              value="<%= typeof farmerMobile != 'undefined' ? farmerMobile : '' %>" />
+        </div>
+                   <!-- for field farmer nid number -->
+        <div class="form-group">
+          <label for="farmerNid">Farmer NID Number</label>
+            <input
+              type="farmerNid"
+              id="farmerNid"
+              name="farmerNid"
+              class="form-control"
+              placeholder="Enter farmer nid number"
+              value="<%= typeof farmerNid != 'undefined' ? farmerNid : '' %>" />
+        </div>
+        <!-- Button for upload field data -->
+          <button type="submit" class="btn btn-primary btn-block">
+              Upload Field Data
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
 	<br>
 	<br>
 	<!-- linked footer -->

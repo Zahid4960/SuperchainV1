@@ -74,11 +74,19 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/field">Field</a>
                             </li>
+                             <!-- for messages -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/messages">Messages</a>
+                            </li>
                             <% } %>
                             <% if(user.role === "production") {%>
                             <!-- for production -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/production">Production</a>
+                            </li>
+                             <!-- for messages -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/messages">Messages</a>
                             </li>
                             <% } %>
                             <% if(user.role === "quality") {%>
@@ -86,18 +94,26 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/quality">Quality</a>
                             </li>
+                             <!-- for messages -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/messages">Messages</a>
+                            </li>
                             <% } %>
                             <% if(user.role === "transport") {%>
                             <!-- for transport -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/transport">Transport</a>
                             </li>
+                             <!-- for messages -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/messages">Messages</a>
+                            </li>
                             <% } %>
                               <!-- for issues -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/issues">Issues</a>
                             </li>
-                              <!-- for inquiry -->
+                              <!-- for search -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/search">Search</a>
                             </li>

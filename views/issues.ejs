@@ -11,9 +11,48 @@
 <body>
 	<!-- externalHeader link-->
 	<div><% include ./partials/internalHeader %></div>
+	<br>
+	<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-bug"></i> Send Issues
+        </h1>
+      <% include ./partials/messages %>
+      <form action="/issues" method="POST">
+        <!-- for subject field -->
+        <div class="form-group">
+          <label for="name">Subject</label>
+            <input
+              type="subject"
+              id="subject"
+              name="subject"
+              class="form-control"
+              placeholder="Enter subject"
+              value="<%= typeof subject != 'undefined' ? subject : '' %>"/>
+        </div>
+          <!-- for message  field -->
+        <div class="form-group">
+          <label for="message">Message</label>
+            <textarea 
+              type="message"
+              id="message" 
+              name="message"
+              class="form-control"
+              value="<%= typeof message != 'undefined' ? message : '' %>" >
+            </textarea>
+        </div> 
+        <!-- Button for send -->
+          <button type="submit" class="btn btn-primary btn-block">
+              Send
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+	<br>
+	<br>
 	<!-- footer link -->
-	<br>
-	<br>
    <div><% include ./partials/footer %></div>
 </body>
 </html>
