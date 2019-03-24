@@ -7,7 +7,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 const db = mongoose.connection;
 
-/* Field schema */
+/* production schema */
 const ProductionSchema = mongoose.Schema({
 	/* For productions's product id */
 	productID: {

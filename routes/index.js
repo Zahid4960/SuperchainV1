@@ -4,6 +4,8 @@ const { ensureAuthenticated } = require('../config/auth');
 
 const Field = require('../models/Field');
 const Production = require('../models/Production');
+const Quality = require('../models/Quality');
+//const Transport = require('../models/Transport');
 
 // Index page will redirected to home,navbar barnd(superchain) 
 router.get('/', (req, res) => res.render('index'));
@@ -37,10 +39,15 @@ router.get('/search', (req,res) => res.render('search'));
    .sort({date:'desc'}).exec( (err, field) => {
       let production = Production.find({})
       .sort({date: 'desc'}).exec((err, production) => {
-        res.render('dashboard', {
-          user: req.user,
-          "field": field,
-          "production": production
+          let quality = Quality.find({})
+          .sort({date: 'desc'}).exec((err, quality) =>{
+             res.render('dashboard', {
+               user: req.user,
+               "field": field,
+               "production": production,
+               "quality": quality
+          })
+       
         })
       })
      });
@@ -126,7 +133,7 @@ router.post('/production', (req, res) =>{
     errors.push({ msg: 'Please enter all fields' });
   }
 
-    // check for farmer mobile number length if it less than 12 digits then don't accept
+    // check for iso number length if it less than 6 digits then don't accept
   if (companyIsoNumber.length < 6) {
       errors.push({ msg: 'ISO number must be at least 6 digits' });
     }
@@ -169,6 +176,53 @@ router.get('/quality', ensureAuthenticated, (req, res) =>
     user: req.user
   })
 );
+
+// quality page for post method
+router.post('/quality', (req, res) =>{
+  const  { productID, productName, qcTests, qcResult, qcName, qcNidNumber, qcContact } = req.body;
+  let errors = [];
+
+  //checks for blank field
+  if( !productID || !productName || !qcTests || !qcResult || !qcName || !qcNidNumber || !qcContact ){
+    errors.push({ msg: 'Please enter all fields' });
+  }
+
+    // check for quality controller nid number length if it less than 12 digits then don't accept
+  if (qcNidNumber.length < 17) {
+      errors.push({ msg: 'Nid number must be at least 17 digits' });
+    }
+
+    // if finds any errors then show it
+  if(errors.length > 0){
+      res.render('quality',{
+        errors,
+        productID,
+        productName,
+        qcTests,
+        qcResult,
+        qcName,
+        qcNidNumber,
+        qcContact
+      });
+    }
+  // if it passes all the validation then it will store that data into production collections
+    else{
+      const newQuality = new Quality({
+        productID,
+        productName,
+        qcTests,
+        qcResult,
+        qcName,
+        qcNidNumber,
+        qcContact
+      });
+      newQuality.save().then( quality =>{
+         req.flash('success_msg',
+           'Quality control data uploaded successfully');
+         res.redirect('/dashboard');
+      });
+    }
+});
 
 // transport page for get method
 router.get('/transport', ensureAuthenticated, (req, res) =>
