@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 
+
 // send page for get method
 router.get('/send', ensureAuthenticated,(req, res) => 
   res.render('send', {

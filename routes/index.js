@@ -5,7 +5,7 @@ const { ensureAuthenticated } = require('../config/auth');
 const Field = require('../models/Field');
 const Production = require('../models/Production');
 const Quality = require('../models/Quality');
-//const Transport = require('../models/Transport');
+const Transport = require('../models/Transport');
 
 // Index page will redirected to home,navbar barnd(superchain) 
 router.get('/', (req, res) => res.render('index'));
@@ -41,11 +41,15 @@ router.get('/search', (req,res) => res.render('search'));
       .sort({date: 'desc'}).exec((err, production) => {
           let quality = Quality.find({})
           .sort({date: 'desc'}).exec((err, quality) =>{
-             res.render('dashboard', {
+             let transport = Transport.find({})
+             .sort({date: 'desc'}).exec((err, transport) => {
+              res.render('dashboard', {
                user: req.user,
                "field": field,
                "production": production,
-               "quality": quality
+               "quality": quality,
+               "transport": transport
+             })
           })
        
         })
@@ -230,5 +234,61 @@ router.get('/transport', ensureAuthenticated, (req, res) =>
     user: req.user
   })
 );
+
+// transport page for post method
+router.post('/transport', (req, res) =>{
+  const  { productID, productName, companyName, companyLocation, companyContact, veheicleNumber, driverName, driverNidNumber, driverMobile } = req.body;
+  let errors = [];
+
+  //checks for blank field
+  if( !productID || !productName || !companyName || !companyLocation || !companyContact || !veheicleNumber ||!driverName || !driverNidNumber || !driverMobile ){
+    errors.push({ msg: 'Please enter all fields' });
+  }
+
+    // check for driver nid number length if it less than 12 digits then don't accept
+  if (driverNidNumber.length < 17) {
+      errors.push({ msg: 'Nid number must be at least 17 digits' });
+    }
+
+      // check for driver nid number length if it less than 12 digits then don't accept
+  if (driverMobile.length < 11) {
+      errors.push({ msg: 'Mobile must be at least 11 digits' });
+    }   
+
+    // if finds any errors then show it
+  if(errors.length > 0){
+      res.render('transport',{
+        errors,
+        productID,
+        productName,
+        companyName,
+        companyLocation,
+        companyContact,
+        veheicleNumber,
+        driverName,
+        driverNidNumber,
+        driverMobile
+      });
+    }
+  // if it passes all the validation then it will store that data into production collections
+    else{
+      const newTransport = new Transport({
+        productID,
+        productName,
+        companyName,
+        companyLocation,
+        companyContact,
+        veheicleNumber,
+        driverName,
+        driverNidNumber,
+        driverMobile
+      });
+      newTransport.save().then( transport =>{
+         req.flash('success_msg',
+           'Transport data uploaded successfully');
+         res.redirect('/dashboard');
+      });
+    }
+});
 
 module.exports = router;
