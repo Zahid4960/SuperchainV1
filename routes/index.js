@@ -35,18 +35,15 @@ router.get('/search', (req,res) => res.render('search'));
  router.get('/dashboard', ensureAuthenticated, (req, res) => {
    let field = Field.find({})
    .sort({date:'desc'}).exec( (err, field) => {
-    res.render('dashboard', {
-      user: req.user,
-      "field": field
+      let production = Production.find({})
+      .sort({date: 'desc'}).exec((err, production) => {
+        res.render('dashboard', {
+          user: req.user,
+          "field": field,
+          "production": production
         })
-     });
-   let production = Production.find({})
-   .sort({date: 'desc'}).exec((err, production) => {
-      res.render('dashboard', {
-        user: req.user,
-        "production": production
       })
-   });
+     });
   });
 
 // admin page for get method
