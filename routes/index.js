@@ -3,6 +3,7 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 
 const Field = require('../models/Field');
+const Production = require('../models/Production');
 
 // Index page will redirected to home,navbar barnd(superchain) 
 router.get('/', (req, res) => res.render('index'));
@@ -39,6 +40,13 @@ router.get('/search', (req,res) => res.render('search'));
       "field": field
         })
      });
+   let production = Production.find({})
+   .sort({date: 'desc'}).exec((err, production) => {
+      res.render('dashboard', {
+        user: req.user,
+        "production": production
+      })
+   });
   });
 
 // admin page for get method
@@ -109,6 +117,54 @@ router.get('/production', ensureAuthenticated, (req, res) =>
     user: req.user
   })
 );
+
+// production page for post method
+router.post('/production', (req, res) =>{
+  const  { productID, productName, companyName, companyLocation, factoryLocation, companyIsoNumber, companyContact } = req.body;
+  let errors = [];
+
+  //checks for blank field
+  if( !productID || !productName || !companyName || !companyLocation || !factoryLocation ||
+   !companyIsoNumber || !companyContact ){
+    errors.push({ msg: 'Please enter all fields' });
+  }
+
+    // check for farmer mobile number length if it less than 12 digits then don't accept
+  if (companyIsoNumber.length < 6) {
+      errors.push({ msg: 'ISO number must be at least 6 digits' });
+    }
+
+    // if finds any errors then show it
+  if(errors.length > 0){
+      res.render('production',{
+        errors,
+        productID,
+        productName,
+        companyName,
+        companyLocation,
+        factoryLocation,
+        companyIsoNumber,
+        companyContact
+      });
+    }
+  // if it passes all the validation then it will store that data into production collections
+    else{
+      const newProduction = new Production({
+        productID,
+        productName,
+        companyName,
+        companyLocation,
+        factoryLocation,
+        companyIsoNumber,
+        companyContact
+      });
+      newProduction.save().then( production =>{
+         req.flash('success_msg',
+        'Production data uploaded successfully');
+         res.redirect('/dashboard');
+      });
+    }
+});
 
 // quality page for get method
 router.get('/quality', ensureAuthenticated, (req, res) =>

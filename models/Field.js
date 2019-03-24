@@ -1,4 +1,4 @@
-/* Database model named field.js */
+/* Database model named Field.js */
 /* For connection with mongodb */
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/SuperchainV1', { useNewUrlParser: true });
@@ -33,7 +33,7 @@ const FieldSchema = mongoose.Schema({
 	farmerNid: {
 		type: String
 	},
-	/* For current date */
+	/* For current date  and time at the time of uploading production data*/
 	date: {
     type: Date,
     default: Date.now
