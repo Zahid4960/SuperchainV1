@@ -42,28 +42,32 @@ router.get('/search', (req,res) => res.render('search'));
 // search page for post method
 router.post('/search', (req, res) => {
   const { search } = req.body;
-  let errors = [];
-  // check for blank search if blank then it will redirect to search page with error message
-  if( !search ){
-    errors.push({ msg: 'Please enter productID' });
+  // if search box is blank then it will redirected to search page
+  if(!search){
     res.render('search');
-  }else{ //else it will show the search result
-  let field = Field.findOne({ productID: search }).then( field => {
-    let production = Production.findOne({ productID: search }).then( production => {
+  }
+  // query for enter productID from field, production, quality and transport collections
+  let field = Field.findOne({ productID: search}).then( field => {
+    let production = Production.findOne({ productID: search}).then( production =>{
       let quality = Quality.findOne({ productID: search }).then( quality => {
         let transport = Transport.findOne({ productID: search }).then( transport => {
-          res.render('result', {
-            user: req.user,
-            "field": field,
-            "production": production,
-            "quality": quality,
-            "transport": transport
-          })
+          // if enter product id not found then redirected to search page
+          if( !field || !production || !quality || !transport){
+            res.render('search');
+          }
+          // if all goes well means find product id from all the table then render that on result page
+          else{
+            res.render('result', {
+               "field": field,
+               "production": production,
+               "quality": quality,
+               "transport": transport
+            })
+          }
         })
       })
     })
   });
-  }
 });
 
 // dashboard page for get method  
