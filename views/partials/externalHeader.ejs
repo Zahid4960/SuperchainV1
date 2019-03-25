@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <title></title>
@@ -13,6 +14,15 @@
 </head>
   <body>
     <style type="text/css">
+    /*sticky header position*/
+      .sticky.is-sticky {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 1000;
+        width: 100%;
+      }
     /* Minimum height for body*/
        body {
           min-height: auto;
@@ -21,15 +31,6 @@
       nav {
         background: #eaebec;
         min-height: 100px;
-      }
-          /*sticky header position*/
-      .sticky.is-sticky {
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        z-index: 1000;
-        width: 100%;
       }
     </style>
         <header >

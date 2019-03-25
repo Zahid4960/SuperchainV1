@@ -30,8 +30,41 @@ router.get('/messages', ensureAuthenticated,(req, res) =>
     })
   );
 
-// inquiry page for get method
+// result page for get method
+router.get('/result', (req,res) => res.render('result'));
+
+// result page for post method
+router.post('/result', (req,res) => res.render('result'));
+
+// search page for get method
 router.get('/search', (req,res) => res.render('search'));
+
+// search page for post method
+router.post('/search', (req, res) => {
+  const { search } = req.body;
+  let errors = [];
+  // check for blank search if blank then it will redirect to search page with error message
+  if( !search ){
+    errors.push({ msg: 'Please enter productID' });
+    res.render('search');
+  }else{ //else it will show the search result
+  let field = Field.findOne({ productID: search }).then( field => {
+    let production = Production.findOne({ productID: search }).then( production => {
+      let quality = Quality.findOne({ productID: search }).then( quality => {
+        let transport = Transport.findOne({ productID: search }).then( transport => {
+          res.render('result', {
+            user: req.user,
+            "field": field,
+            "production": production,
+            "quality": quality,
+            "transport": transport
+          })
+        })
+      })
+    })
+  });
+  }
+});
 
 // dashboard page for get method  
  router.get('/dashboard', ensureAuthenticated, (req, res) => {
