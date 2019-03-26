@@ -42,10 +42,12 @@ router.get('/search', (req,res) => res.render('search'));
 // search page for post method
 router.post('/search', (req, res) => {
   const { search } = req.body;
+  let errors = [];
   // if search box is blank then it will redirected to search page
   if(!search){
-    res.render('search');
-  }
+    errors.push({ msg: 'Please enter a productID'});
+    res.render('search', {errors});
+  }else{
   // query for enter productID from field, production, quality and transport collections
   let field = Field.findOne({ productID: search}).then( field => {
     let production = Production.findOne({ productID: search}).then( production =>{
@@ -53,7 +55,8 @@ router.post('/search', (req, res) => {
         let transport = Transport.findOne({ productID: search }).then( transport => {
           // if enter product id not found then redirected to search page
           if( !field || !production || !quality || !transport){
-            res.render('search');
+            errors.push({ msg: 'Details not found for this productID'});
+            res.render('search', {errors});
           }
           // if all goes well means find product id from all the table then render that on result page
           else{
@@ -68,6 +71,7 @@ router.post('/search', (req, res) => {
       })
     })
   });
+  }
 });
 
 // dashboard page for get method  
