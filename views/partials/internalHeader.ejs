@@ -65,6 +65,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin/receive">Received</a>
                             </li>
+                             <!-- for qr code -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/qrCode">QR Code</a>
+                            </li>
                               <!-- for registration -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/users/register">Registration</a>
@@ -75,19 +79,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/field">Field</a>
                             </li>
-                             <!-- for messages -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="/messages">Messages</a>
-                            </li>
                             <% } %>
                             <% if(user.role === "production") {%>
                             <!-- for production -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/production">Production</a>
-                            </li>
-                             <!-- for messages -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="/messages">Messages</a>
                             </li>
                             <% } %>
                             <% if(user.role === "quality") {%>
@@ -95,21 +91,21 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/quality">Quality</a>
                             </li>
-                             <!-- for messages -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="/messages">Messages</a>
-                            </li>
                             <% } %>
                             <% if(user.role === "transport") {%>
                             <!-- for transport -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/transport">Transport</a>
                             </li>
-                             <!-- for messages -->
+                            <% } %>
+                              <!-- for search -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/search">Search</a>
+                            </li>
+                              <!-- for messages -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/messages">Messages</a>
                             </li>
-                            <% } %>
                               <!-- for issues -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/issues">Issues</a>

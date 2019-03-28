@@ -2,13 +2,18 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 
+const User = require('../models/User');
 const Field = require('../models/Field');
 const Production = require('../models/Production');
 const Quality = require('../models/Quality');
 const Transport = require('../models/Transport');
 
 // Index page will redirected to home,navbar barnd(superchain) 
-router.get('/', (req, res) => res.render('index'));
+router.get('/', (req, res) => 
+  res.render('index', {
+      user: req.user
+    })
+  );
 
 // about page for get method
 router.get('/about', (req, res) => res.render('about'));
@@ -30,14 +35,11 @@ router.get('/messages', ensureAuthenticated,(req, res) =>
     })
   );
 
-// result page for get method
-router.get('/result', (req,res) => res.render('result'));
-
-// result page for post method
-router.post('/result', (req,res) => res.render('result'));
-
 // search page for get method
-router.get('/search', (req,res) => res.render('search'));
+router.get('/search', (req,res) =>
+  res.render('search',{
+    })
+  );
 
 // search page for post method
 router.post('/search', (req, res) => {
@@ -67,9 +69,9 @@ router.post('/search', (req, res) => {
                "transport": transport
             })
           }
-        })
       })
     })
+   })   
   });
   }
 });
