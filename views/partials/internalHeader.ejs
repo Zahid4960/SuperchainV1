@@ -69,6 +69,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin/qrCode">QR Code</a>
                             </li>
+                             <!-- for qr code -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/blockchain">Blockchain</a>
+                            </li>
                               <!-- for registration -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/users/register">Registration</a>
@@ -85,17 +89,29 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/production">Production</a>
                             </li>
+                              <!-- for issues -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/issues">Issues</a>
+                            </li>
                             <% } %>
                             <% if(user.role === "quality") {%>
                             <!-- for quality -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/quality">Quality</a>
                             </li>
+                              <!-- for issues -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/issues">Issues</a>
+                            </li>
                             <% } %>
                             <% if(user.role === "transport") {%>
                             <!-- for transport -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/transport">Transport</a>
+                            </li>
+                              <!-- for issues -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/issues">Issues</a>
                             </li>
                             <% } %>
                               <!-- for search -->
@@ -105,10 +121,6 @@
                               <!-- for messages -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/messages">Messages</a>
-                            </li>
-                              <!-- for issues -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="/issues">Issues</a>
                             </li>
                             <!-- for logout -->
                             <li class="nav-item">

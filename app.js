@@ -8,6 +8,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const async = require('async');
 const qr = require('qr-image'); // for generating qr code.
+const sha256 = require('sha256') // for generating hash for block chain
 
 const app = express();
 

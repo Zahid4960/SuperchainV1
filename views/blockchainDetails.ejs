@@ -15,33 +15,14 @@
 <body>
 	<!-- externalHeader link-->
 	<div><% include ./partials/internalHeader %></div>
-	 <div class="row mt-5">
-      <div class="col-md-6 m-auto">
-        <div class="card card-body">
-          <h1 class="text-center mb-3">
-            <i class="fas fa-qrcode"></i> QR Code Generator
-          </h1>
-            <% include ./partials/messages %>
-            <form action="/admin/qrCode" method="POST">
-              <!-- for name field -->
-              <div class="form-group">
-                <label for="search">Search</label>
-                  <input
-                    type="search"
-                    id="search"
-                    name="search"
-                    class="form-control"
-                    placeholder="Enter Product ID(Which QR Code To be Generated)"
-                    value="<%= typeof search != 'undefined' ? search : '' %>"/>
-              </div>
-            <!-- Button for search -->
-              <button type="submit" class="btn btn-primary btn-block">
-                  Generate QR Code
-              </button>
-      </form>
-    </div>
+  <!-- jumbotron of blockchain details page  -->
+  <div class="jumbotron">
+      <%= index %>
+      <%= timestamp %>
+      <%= data %>
+      <%= prevHash %>
+      <%= thisHash %>
   </div>
-</div>
 	<!-- footer link -->
 	<br>
 	<br>
