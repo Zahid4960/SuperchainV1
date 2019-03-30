@@ -1,1 +1,5 @@
-.views
+# ignore folder named views
+views/
+
+# ignore all the files that has extention .ejs
+*.ejs

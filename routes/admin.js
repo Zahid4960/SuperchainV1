@@ -92,7 +92,7 @@ router.post('/qrCode', ensureAuthenticated, (req, res) => {
            const code = qr.image(
             '       ProductID: ' + productID+
             '\n  Product Name: ' + productName+
-            '\n---------------------------------------------------------\n' +
+            '\n-------------------------------------------------------\n' +
             '\n'+
             '                     Field Data         ' +
             '\n Field Location: ' +fieldLocation+
@@ -100,7 +100,7 @@ router.post('/qrCode', ensureAuthenticated, (req, res) => {
             '\n Farmer Mobile: ' +farmerMobile+
             '\n Farmer Nid: ' +farmerNid+
             '\n Date: ' +fDate+
-            '\n-----------------------------------------------------------\n' +
+            '\n-------------------------------------------------------\n' +
             '\n'+
             '                   Production Data         ' +
             '\n Company Name: ' +companyName+
@@ -108,7 +108,7 @@ router.post('/qrCode', ensureAuthenticated, (req, res) => {
             '\n ISO Number: ' +companyIsoNumber+
             '\n Contact: ' +companyContact+
             '\n Date: ' +pDate+
-            '\n----------------------------------------------------------\n' +
+            '\n-------------------------------------------------------\n' +
             '\n'+
             '               Quality Control Data         ' +
             '\n Quality Tests: ' +qcTests+
@@ -117,7 +117,7 @@ router.post('/qrCode', ensureAuthenticated, (req, res) => {
             '\n QC NID: ' +qcNidNumber+
             '\n QC Contact: ' +qcContact+
             '\n Date: ' +qDate+
-            '\n---------------------------------------------------------\n' +
+            '\n-------------------------------------------------------\n' +
             '\n'+
             '                  Transport Data         ' +
             '\n Transport Company: ' +transportCompanyName+
