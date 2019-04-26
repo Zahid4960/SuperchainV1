@@ -1,6 +1,7 @@
 const multer = require('multer');
 //const upload = multer({dest: './uploads'});
 const express = require('express');
+var path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -11,6 +12,8 @@ const qr = require('qr-image'); // for generating qr code.
 const sha256 = require('sha256') // for generating hash for block chain
 
 const app = express();
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Passport Config
 require('./config/passport')(passport);

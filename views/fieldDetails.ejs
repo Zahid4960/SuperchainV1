@@ -1,0 +1,33 @@
+<!--Style for card-->
+<style type="text/css">
+  .card:hover{
+    box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
+}
+</style>
+<div>
+      <h3 class="text-center">Field Data</h3>
+</div>
+<div style="border-bottom: 3px solid red;"></div>
+<% for(var i = 0; i < field.length; i++) { %>
+<div class="col-4-lg">
+  <div class="card" style="width: 40rem; margin-left: 20%; margin-top: 2%">
+  <img class="card-img-top" src="http://localhost:5000/images/mango.jpg" alt="Card image cap">
+  <div class="card-body">
+    <p>
+      <tr><h3 class="text-center"><%= field[i].productID %></h3></tr>
+      <tr><h3 class="text-center"><%= field[i].productName %></h3></tr>
+    </p>
+    <div>
+       <tr>Field Location: <%= field[i].fieldLocation %></tr><br>
+       <tr>Farmer Name: <%= field[i].farmerName %></tr><br>
+       <tr>Farmer Mobile: <%= field[i].farmerMobile %></tr><br>
+       <tr>Farmer Nid: <%= field[i].farmerNid %></tr><br>
+       <tr>Date: <%= field[i].date %></tr><br>
+    </div>
+    <div style="float: right; margin-top: 2%;">
+      <button type="submit" class="btn btn-primary">Edit </button>
+      <button type="submit" class="btn btn-primary">Delete </button>
+    </div>
+  </div>
+</div>
+<% } %>

@@ -1,0 +1,36 @@
+<!--Style for card-->
+<style type="text/css">
+  .card:hover{
+    box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
+}
+</style>
+<div>
+      <h3 class="text-center">Production Data</h3>
+</div>
+<div style="border-bottom: 3px solid red;"></div>
+<% for(var i = 0; i < production.length; i++) { %>
+<div class="col-4-lg">
+  <div class="card" style="width: 40rem; margin-left: 20%; margin-top: 2%;">
+  <img class="card-img-top" src="http://localhost:5000/images/mango.jpg" alt="Card image cap">
+  <div class="card-body">
+    <p>
+      <tr><h3 class="text-center"><%= production[i].productID %></h3></tr>
+      <tr><h3 class="text-center"><%= production[i].productName %></h3></tr>
+    </p>
+    <div>
+       <tr>Company Name: <%= production[i].companyName %></tr><br>
+       <tr>Company Address: <%= production[i].companyLocation %></tr><br>
+       <tr>Facctory Address: <%= production[i].factoryLocation %></tr><br>
+       <tr>ISO Number: <%= production[i].companyIsoNumber %></tr><br>
+       <tr>Contacts: <%= production[i].companyContact %></tr><br>
+       <tr>Date: <%= production[i].date %></tr><br>
+    </div>
+    <div style="float: right; margin-top: 2%;">
+      <button type="submit" class="btn btn-primary">Edit </button>
+      <button type="submit" class="btn btn-primary">Delete </button>
+    </div>
+  </div>
+</div>
+<% } %>
+
+
