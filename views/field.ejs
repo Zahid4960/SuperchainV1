@@ -7,7 +7,7 @@
           <i class="fas fa-tractor"></i> Field
         </h1>
       <% include ./partials/messages %>
-      <form action="/field" method="POST">
+      <form action="/field" method="POST" enctype="multipart/form-data">
         <!-- for field product id -->
         <div class="form-group">
           <label for="productID">Product ID</label>
@@ -73,6 +73,17 @@
               class="form-control"
               placeholder="Enter farmer nid number"
               value="<%= typeof farmerNid != 'undefined' ? farmerNid : '' %>" />
+        </div>
+        <!-- for field image upload -->
+        <div class="form-group">
+          <label for="fieldImage">Field Image</label>
+          <input 
+              type="file" 
+              id="fieldImage"
+              name="fieldImage"
+              class="form-control"
+              placeholder="Enter field iamge of the product" 
+              value="<%= typeof fieldImage != 'undefined' ? fieldImage : ''%>"/>
         </div>
         <!-- Button for upload field data -->
           <button type="submit" class="btn btn-primary btn-block">

@@ -33,6 +33,10 @@ const FieldSchema = mongoose.Schema({
 	farmerNid: {
 		type: String
 	},
+		/* For field image upload */
+	fieldImage: {
+		type: String
+	},
 	/* For current date  and time at the time of uploading production data*/
 	date: {
     type: Date,

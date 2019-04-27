@@ -11,7 +11,7 @@
 <% for(var i = 0; i < production.length; i++) { %>
 <div class="col-4-lg">
   <div class="card" style="width: 40rem; margin-left: 20%; margin-top: 2%;">
-  <img class="card-img-top" src="http://localhost:5000/images/mango.jpg" alt="Card image cap">
+  <img class="card-img-top" src="http://localhost:5000/images/<%= production[i].productID%>.png" alt="Card image cap">
   <div class="card-body">
     <p>
       <tr><h3 class="text-center"><%= production[i].productID %></h3></tr>

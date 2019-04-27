@@ -1,0 +1,56 @@
+const express = require('express');
+const router = express.Router();
+const { ensureAuthenticated } = require('../config/auth');
+
+const User = require('../models/User');
+const Field = require('../models/Field');
+
+
+function updateRecord(req, res) {
+    Field.findOneAndUpdate({ productID: req.body.productID }, req.body, { new: true }, (err, field) => {
+        if (!err) { 
+        	req.flash('success_msg',
+               'Field data edited  successfully');
+             res.redirect('/dashboard'); 
+         }
+        else {
+                console.log('Error during record update : ' + err);
+        }
+    });
+}
+
+
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
+	 Field.findById( req.params.id, (err, field) =>{
+	 	if(! err){
+	 		res.render('editField',{
+	 			"field": field
+	 		})
+	 	}
+	 });
+});
+
+
+router.post('/edit', ensureAuthenticated, (req, res) => {
+        updateRecord(req, res);
+});
+
+
+
+
+router.get('/delete/:id', ensureAuthenticated, (req, res) => {
+    Field.findByIdAndRemove(req.params.id, (err, field) => {
+        if (!err) {
+        	req.flash('success_msg',
+               'Field data deleted successfully');
+             res.redirect('/dashboard'); 
+        }
+        else { 
+        	console.log('Error in field data delete :' + err); 
+        }
+    });
+});
+
+
+
+module.exports = router;

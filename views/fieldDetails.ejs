@@ -11,7 +11,7 @@
 <% for(var i = 0; i < field.length; i++) { %>
 <div class="col-4-sm">
   <div class="card" style="width: 40rem; margin-left: 20%; margin-top: 2%">
-  <img class="card-img-top" src="http://localhost:5000/images/mango.jpg" alt="Card image cap">
+  <img class="card-img-top" src="http://localhost:5000/images/<%= field[i].productID%>.png" alt="Card image cap">
   <div class="card-body">
     <p>
       <tr><h3 class="text-center"><%= field[i].productID %></h3></tr>
@@ -25,8 +25,10 @@
        <tr>Date: <%= field[i].date %></tr><br>
     </div>
     <div style="float: right; margin-top: 2%;">
-      <button type="submit" class="btn btn-primary"><i class="fa fa-edit">Edit </i></button>
-      <button type="submit" class="btn btn-primary"><i class="fa fa-trash">Delete</i></button>
+      <!-- button for edit details -->
+      <a href="field/edit/<%= field[i]._id%>"> <button type="submit" class="btn btn-primary"><i class="fa fa-edit">Edit </i></button></a>
+      <!-- button for delete details -->
+      <a href="/field/delete/<%=field[i]._id%>" onclick="return confirm('Are you sure to delete this record ?')";><button type="submit" class="btn btn-primary"><i class="fa fa-trash">Delete</i></button></a>
     </div>
   </div>
 </div>

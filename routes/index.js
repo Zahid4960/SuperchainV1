@@ -117,7 +117,7 @@ router.get('/field', ensureAuthenticated, (req, res) =>
 
 // field page for post method
 router.post('/field', (req, res) =>{
-  const  { productID, productName, fieldLocation, farmerName, farmerMobile, farmerNid } = req.body;
+  const  { productID, productName, fieldLocation, farmerName, farmerMobile, farmerNid, fieldImage } = req.body;
   let errors = [];
 
   //checks for blank field
@@ -152,7 +152,8 @@ router.post('/field', (req, res) =>{
         fieldLocation,
         farmerName,
         farmerMobile,
-        farmerNid
+        farmerNid,
+        fieldImage
       });
       newField.save().then( field =>{
          req.flash('success_msg',

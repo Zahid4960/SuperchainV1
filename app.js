@@ -1,7 +1,4 @@
-const multer = require('multer');
-//const upload = multer({dest: './uploads'});
 const express = require('express');
-var path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -10,6 +7,8 @@ const session = require('express-session');
 const async = require('async');
 const qr = require('qr-image'); // for generating qr code.
 const sha256 = require('sha256') // for generating hash for block chain
+const path = require('path'); // package for path 
+const multer = require('multer'); // package for image upload
 
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
