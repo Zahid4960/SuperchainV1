@@ -2,11 +2,14 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 
-const User = require('../models/User');
+// by using this model we can catch and fetch all the users information
+const User = require('../models/User'); 
+// by using this model we can catch and fetch all the field data
 const Field = require('../models/Field');
 
 
-function updateRecord(req, res) {
+// function for edit field data
+function editRecord(req, res) {
     Field.findOneAndUpdate({ productID: req.body.productID }, req.body, { new: true }, (err, field) => {
         if (!err) { 
         	req.flash('success_msg',
@@ -19,7 +22,7 @@ function updateRecord(req, res) {
     });
 }
 
-
+// routes for edit any field data
 router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 	 Field.findById( req.params.id, (err, field) =>{
 	 	if(! err){
@@ -30,14 +33,12 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 	 });
 });
 
-
+// routes for edit any field data by using editRecord function
 router.post('/edit', ensureAuthenticated, (req, res) => {
-        updateRecord(req, res);
+        editRecord(req, res);
 });
 
-
-
-
+// routes for delete any field data by fetching its id
 router.get('/delete/:id', ensureAuthenticated, (req, res) => {
     Field.findByIdAndRemove(req.params.id, (err, field) => {
         if (!err) {
@@ -50,7 +51,6 @@ router.get('/delete/:id', ensureAuthenticated, (req, res) => {
         }
     });
 });
-
 
 
 module.exports = router;

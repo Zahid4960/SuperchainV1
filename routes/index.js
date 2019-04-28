@@ -114,26 +114,28 @@ router.get('/field', ensureAuthenticated, (req, res) =>
   })
 );
 
-
 // field page for post method
 router.post('/field', (req, res) =>{
-  const  { productID, productName, fieldLocation, farmerName, farmerMobile, farmerNid, fieldImage } = req.body;
+  const  { productID, productName, fieldLocation, farmerName, farmerMobile, farmerNid } = req.body;
   let errors = [];
 
   //checks for blank field
-  if( !productID || !productName || !fieldLocation || !farmerName || !farmerMobile || !farmerNid ){
+  if( !productID || !productName || !fieldLocation || !farmerName || !farmerMobile ||!farmerNid ){
     errors.push({ msg: 'Please enter all fields' });
   }
-  // check for farmer mobile number length if it less than 12 digits then don't accept
-    if (farmerMobile.length < 11) {
+
+    // check for  number length if it less than 11 digits then don't accept
+  if (farmerMobile.length < 6) {
       errors.push({ msg: 'Mobile number must be at least 11 digits' });
     }
-   // check for farmer nid number length if it less than 17 digits then don't accept
-    if (farmerNid.length < 17) {
-      errors.push({ msg: 'Nid number must be at least 17 digits' });
+
+     // check for  nid number length if it less than 17 digits then don't accept
+  if (farmerNid.length < 17) {
+      errors.push({ msg: 'Mobile number must be at least 11 digits' });
     }
+
     // if finds any errors then show it
-    if(errors.length > 0){
+  if(errors.length > 0){
       res.render('field',{
         errors,
         productID,
@@ -144,7 +146,7 @@ router.post('/field', (req, res) =>{
         farmerNid
       });
     }
-  // if it passes all the validation then it will store that data into field collections
+  // if it passes all the validation then it will store that data into production collections
     else{
       const newField = new Field({
         productID,
@@ -152,8 +154,7 @@ router.post('/field', (req, res) =>{
         fieldLocation,
         farmerName,
         farmerMobile,
-        farmerNid,
-        fieldImage
+        farmerNid
       });
       newField.save().then( field =>{
          req.flash('success_msg',
@@ -162,6 +163,8 @@ router.post('/field', (req, res) =>{
       });
     }
 });
+
+
 
 // production page for get method
 router.get('/production', ensureAuthenticated, (req, res) =>

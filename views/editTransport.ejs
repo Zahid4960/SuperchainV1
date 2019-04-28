@@ -1,0 +1,129 @@
+	<!-- linked internalHeader -->
+	<div><% include ./partials/internalHeader %></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-truck-moving"></i> Transport
+        </h1>
+      <% include ./partials/messages %>
+       <!-- for fetching transport data's id and it will be used but remain hidden into the form -->
+      <input type="hidden" name="_id" value="<%= transport._id %>">
+      <form action="/transport/edit" method="POST">
+        <!-- for transport product id -->
+        <div class="form-group">
+          <label for="productID">Product ID</label>
+            <input
+              type="productID"
+              id="productID"
+              name="productID"
+              class="form-control"
+              placeholder="Enter Product ID"
+              value="<%= transport.productID %>" 
+              readonly />
+        </div>
+           <!-- for transport product name -->
+        <div class="form-group">
+          <label for="productName">Product Name</label>
+            <input
+              type="productName"
+              id="productName"
+              name="productName"
+              class="form-control"
+              placeholder="Enter product name"
+              value="<%= transport.productName %>" 
+              readonly />
+        </div>
+           <!-- for transportation company name -->
+        <div class="form-group">
+          <label for="companyName">Transportation Company Name</label>
+            <input
+              type="companyName"
+              id="companyName"
+              name="companyName"
+              class="form-control"
+              placeholder="Enter transportation company name"
+              value="<%= transport.companyName %>" />
+        </div>
+             <!-- for transportation company address -->
+        <div class="form-group">
+          <label for="companyLocation">Transportation Company Address</label>
+            <input
+              type="companyLocation"
+              id="companyLocation"
+              name="companyLocation"
+              class="form-control"
+              placeholder="Enter transportation company address"
+              value="<%= transport.companyLocation %>" />
+        </div>
+                    <!-- for transportation company contact -->
+        <div class="form-group">
+          <label for="companyContact">Contact Email or Mobile(Transportation Company)</label>
+            <input
+              type="companyContact"
+              id="companyContact"
+              name="companyContact"
+              class="form-control"
+              placeholder="Enter transportation company contact email or mobile"
+              value="<%= transport.companyContact %>" />
+        </div>
+              <!-- Veheicle number -->
+        <div class="form-group">
+          <label for="veheicleNumber"> Veheicle Number </label>
+            <input
+              type="veheicleNumber"
+              id="veheicleNumber"
+              name="veheicleNumber"
+              class="form-control"
+              placeholder="Enter veheicle number that used for product transport"
+              value="<%= transport.veheicleNumber %>" />
+        </div>
+                       <!-- for driver name -->
+        <div class="form-group">
+          <label for="driverName">Driver Name</label>
+            <input
+              type="driverName"
+              id="driverName"
+              name="driverName"
+              class="form-control"
+              placeholder="Enter production company's driver name"
+              value="<%= transport.driverName %>" />
+        </div>
+                       <!-- for  driver nid -->
+        <div class="form-group">
+          <label for="driverNidNumber">Driver Nid Number</label>
+            <input
+              type="driverNidNumber"
+              id="driverNidNumber"
+              name="driverNidNumber"
+              class="form-control"
+              placeholder="Enter production company's nid number"
+              value="<%= transport.driverNidNumber %>" />
+        </div>
+                         <!-- for  driver mobile -->
+        <div class="form-group">
+          <label for="driverMobile">Driver Mobile</label>
+            <input
+              type="driverMobile"
+              id="driverMobile"
+              name="driverMobile"
+              class="form-control"
+              placeholder="Enter production company's driver mobile number"
+              value="<%= transport.driverMobile %>" />
+        </div>
+        <!-- Button for upload field data -->
+          <button type="submit" class="btn btn-primary btn-block">
+              Edit Transport Data
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+	<!-- linked footer -->
+	<div class="container"><% include ./partials/footer %></div>

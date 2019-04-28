@@ -8,6 +8,7 @@
           <i class="fas fa-tractor"></i> Field
         </h1>
       <% include ./partials/messages %>
+      <!-- for fetching field data's id and it will be used but remain hidden into the form -->
       <input type="hidden" name="_id" value="<%= field._id %>">
       <form action="/field/edit" method="POST">
         <!-- for field product id -->
@@ -19,7 +20,8 @@
               name="productID"
               class="form-control"
               placeholder="Enter Product ID"
-              value="<%= field.productID %>" />
+              value="<%= field.productID %>"
+              readonly />
         </div>
            <!-- for field product name -->
         <div class="form-group">
@@ -30,7 +32,8 @@
               name="productName"
               class="form-control"
               placeholder="Enter product name"
-              value="<%= field.productName %>" />
+              value="<%= field.productName %>" 
+              readonly />
         </div>
            <!-- for field location -->
         <div class="form-group">

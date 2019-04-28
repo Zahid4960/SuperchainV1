@@ -11,7 +11,8 @@
 <% for(var i = 0; i < quality.length; i++) { %>
 <div class="col-4-lg">
   <div class="card" style="width: 40rem; margin-left: 20%; margin-top: 2%;">
-  <img class="card-img-top" src="http://localhost:5000/images/mango.jpg" alt="Card image cap">
+   <!-- for showing image (where product id == image name(product id) + .png)-->
+  <img class="card-img-top"  src="http://localhost:5000/images/<%= quality[i].productID %>.jpg" style="height: 300px; width: 100%; border: 5px solid gray;">
   <div class="card-body">
     <p>
       <tr><h3 class="text-center"><%= quality[i].productID %></h3></tr>
@@ -26,8 +27,10 @@
        <tr>Date: <%= quality[i].date %></tr><br>
     </div>
     <div style="float: right; margin-top: 2%;">
-      <button type="submit" class="btn btn-primary"><i class="fa fa-edit">Edit </i></button>
-      <button type="submit" class="btn btn-primary"><i class="fa fa-trash">Delete</i></button>
+       <!-- button for edit details for quality control data -->
+      <a href="/quality/edit/<%= quality[i]._id%>"> <button type="submit" class="btn btn-primary"><i class="fa fa-edit">Edit </i></button></a>
+      <!-- button for delete details for quality control data -->
+      <a href="/quality/delete/<%=quality[i]._id%>" onclick="return confirm('Are you sure to delete this record ?')";><button type="submit" class="btn btn-primary"><i class="fa fa-trash">Delete</i></button></a>
     </div>
   </div>
 </div>

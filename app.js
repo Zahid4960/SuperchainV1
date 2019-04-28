@@ -53,6 +53,14 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/admin', require('./routes/admin.js'));
+// Routes for field data edit, delete
+app.use('/field', require('./routes/field.js'));
+// Routes for producton data edit, delete
+app.use('/production', require('./routes/production.js'));
+// Routes for quality control data edit, delete
+app.use('/quality', require('./routes/quality.js'));
+// Routes for transport data edit, delete
+app.use('/transport', require('./routes/transport.js'));
 
 const PORT = process.env.PORT || 5000;
 

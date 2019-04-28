@@ -1,0 +1,105 @@
+	<!-- linked internalHeader -->
+	<div><% include ./partials/internalHeader %></div>
+	<br>
+	<br>
+	<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-industry"></i> Production
+        </h1>
+      <% include ./partials/messages %>
+      <!-- for fetching production data's id and it will be used but remain hidden into the form -->
+      <input type="hidden" name="_id" value="<%= production._id %>">
+      <form action="/production/edit" method="POST">
+        <!-- for production product id -->
+        <div class="form-group">
+          <label for="productID">Product ID</label>
+            <input
+              type="productID"
+              id="productID"
+              name="productID"
+              class="form-control"
+              placeholder="Enter Product ID"
+              value="<%= production.productID %>" 
+              readonly />
+        </div>
+           <!-- for production product name -->
+        <div class="form-group">
+          <label for="productName">Product Name</label>
+            <input
+              type="productName"
+              id="productName"
+              name="productName"
+              class="form-control"
+              placeholder="Enter product name"
+              value="<%= production.productName %>" 
+              readonly />
+        </div>
+           <!-- for production company name -->
+        <div class="form-group">
+          <label for="companyName">Production Company Name</label>
+            <input
+              type="companyName"
+              id="companyName"
+              name="companyName"
+              class="form-control"
+              placeholder="Enter production company name"
+              value="<%= production.companyName %>" />
+        </div>
+             <!-- for production company location -->
+        <div class="form-group">
+          <label for="companyLocation">Headquarter Address</label>
+            <input
+              type="companyLocation"
+              id="companyLocation"
+              name="companyLocation"
+              class="form-control"
+              placeholder="Enter production company headquarter address"
+              value="<%= production.companyLocation %>" />
+        </div>
+               <!-- for production factory location -->
+        <div class="form-group">
+          <label for="factoryLocation">Factory Address</label>
+            <input
+              type="factoryLocation"
+              id="factoryLocation"
+              name="factoryLocation"
+              class="form-control"
+              placeholder="Enter production company factory location"
+              value="<%= production.factoryLocation %>" />
+        </div>
+                   <!-- for production company iso number -->
+        <div class="form-group">
+          <label for="companyIsoNumber">ISO Number</label>
+            <input
+              type="companyIsoNumber"
+              id="companyIsoNumber"
+              name="companyIsoNumber"
+              class="form-control"
+              placeholder="Enter production company ISO number"
+              value="<%= production.companyIsoNumber %>" />
+        </div>
+                    <!-- for production contact -->
+        <div class="form-group">
+          <label for="companyContact">Contact Email or Mobile(Production Company)</label>
+            <input
+              type="companyContact"
+              id="companyContact"
+              name="companyContact"
+              class="form-control"
+              placeholder="Enter production company contact email or mobile"
+              value="<%= production.companyContact %>" />
+        </div>
+        <!-- Button for upload field data -->
+          <button type="submit" class="btn btn-primary btn-block">
+              Edit Production Data
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+	<!-- linked footer -->
+	<div class="container"><% include ./partials/footer %></div>
