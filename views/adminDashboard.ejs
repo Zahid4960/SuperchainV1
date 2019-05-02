@@ -1,0 +1,129 @@
+<div>
+  
+  <h3 class="text-center">Field Data</h3>
+  </div>
+    <table class="table table-striped">
+          <thead>
+             <tr>
+             <th scope="col">Product ID</th>
+             <th scope="col">Product Name</th>
+                 <th scope="col">Field Location</th>
+                 <th scope="col">Farmer Name</th>
+                 <th scope="col">Farmer Mobile</th>
+                 <th scope="col">Farmer NID</th>
+                 <th scope="col">Date</th>
+               </tr>
+             </thead>
+              <% for(var i=0; i < field.length; i++) { %>
+                <tr>
+             <td><%= field[i].productID %></td>
+             <td><%= field[i].productName %></td>
+             <td><%= field[i].fieldLocation %></td>
+             <td><%= field[i].farmerName %></td>
+             <td><%= field[i].farmerMobile %></td>
+             <td><%= field[i].farmerNid %></td>
+             <td><%= field[i].date %></td>
+            </tr>
+           <% } %> 
+         </table>
+         <br>
+         <br>
+         <div>
+             <h3 class="text-center">Production Data</h3>
+         </div>
+    <table class="table table-striped">
+          <thead>
+             <tr>
+                <th scope="col">Product ID</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Company Name</th>
+                <th scope="col">Company Address</th>
+                <th scope="col">Facctory Address</th>
+                <th scope="col">ISO Number</th>
+                <th scope="col">Contacts</th>
+                <th scope="col">Date</th>
+               </tr>
+             </thead>
+              <% for(var i=0; i < production.length; i++) { %>
+                <tr>
+                  <td><%= production[i].productID %></td>
+                  <td><%= production[i].productName %></td>
+                  <td><%= production[i].companyName %></td>
+                  <td><%= production[i].companyLocation %></td>
+                  <td><%= production[i].factoryLocation %></td>
+                  <td><%= production[i].companyIsoNumber %></td>
+                  <td><%= production[i].companyContact %></td>
+                  <td><%= production[i].date %></td>
+            </tr>
+           <% } %> 
+         </table>
+         <br>
+         <br>
+         <div>
+      <h3 class="text-center">Quality Data</h3>
+  </div>
+    <table class="table table-striped">
+          <thead>
+             <tr>
+                <th scope="col">Product ID</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quality Control Tests</th>
+                <th scope="col">Quality Tests</th>
+                <th scope="col">Quality Controller Name</th>
+                <th scope="col">Quality Controller Nid Number</th>
+                <th scope="col">Quality Controller Contact</th>
+                <th scope="col">Date</th>
+               </tr>
+             </thead>
+              <% for(var i=0; i < quality.length; i++) { %>
+                <tr>
+                  <td><%= quality[i].productID %></td>
+                  <td><%= quality[i].productName %></td>
+                  <td><%= quality[i].qcTests %></td>
+                  <td><%= quality[i].qcResult %></td>
+                  <td><%= quality[i].qcName %></td>
+                  <td><%= quality[i].qcNidNumber %></td>
+                  <td><%= quality[i].qcContact %></td>
+                  <td><%= quality[i].date %></td>
+            </tr>
+           <% } %> 
+         </table>
+         <br>
+         <br>
+         <div>
+        <h3 class="text-center">Transport Data</h3>
+    </div>
+    <table class="table table-striped">
+          <thead>
+             <tr>
+                <th scope="col">Product ID</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Transpotation Company Name</th>
+                <th scope="col">Transpotation Company Address</th>
+                <th scope="col">Transpotation Company Contact</th>
+                <th scope="col">Veheicle Number</th>
+                <th scope="col">Driver Name</th>
+                <th scope="col">Driver Nid Number</th>
+                <th scope="col">Driver Mobile Number</th>
+                <th scope="col">Date</th>
+               </tr>
+             </thead>
+              <% for(var i=0; i < transport.length; i++) { %>
+                <tr>
+                  <td><%= transport[i].productID %></td>
+                  <td><%= transport[i].productName %></td>
+                  <td><%= transport[i].companyName %></td>
+                  <td><%= transport[i].companyLocation %></td>
+                  <td><%= transport[i].companyContact %></td>
+                  <td><%= transport[i].veheicleNumber %></td>
+                  <td><%= transport[i].driverName %></td>
+                  <td><%= transport[i].driverNidNumber %></td>
+                  <td><%= transport[i].driverMobile %></td>
+                  <td><%= quality[i].date %></td>
+            </tr>
+           <% } %> 
+         </table>
+</div>    
+     
+  
+ 

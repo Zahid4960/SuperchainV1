@@ -26,17 +26,8 @@
     <% include ./transportDetails.ejs %>
 <% } %>
 <% if(user.role == 'admin') {%>
-  <% include ./fieldDetails.ejs %>
-         <br>
-         <br>
-  <% include ./productionDetails.ejs %>       
-         <br>
-         <br>
-  <% include ./qualityDetails.ejs %>              
-         <br>
-         <br>
-  <% include ./transportDetails.ejs %>
-  <% } %>           
+  <% include ./adminDashboard.ejs %>
+<% } %>           
 	<br>
 	<br>
 	<!-- linked footer -->
