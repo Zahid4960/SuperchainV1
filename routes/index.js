@@ -7,6 +7,7 @@ const Field = require('../models/Field');
 const Production = require('../models/Production');
 const Quality = require('../models/Quality');
 const Transport = require('../models/Transport');
+const Blockchain = require('../models/Blockchain');
 
 // Index page will redirected to home,navbar barnd(superchain) 
 router.get('/', (req, res) => 
@@ -55,6 +56,7 @@ router.post('/search', (req, res) => {
     let production = Production.findOne({ productID: search}).then( production =>{
       let quality = Quality.findOne({ productID: search }).then( quality => {
         let transport = Transport.findOne({ productID: search }).then( transport => {
+          let blockChain = Blockchain.find({ productID: search }).then( blockChain => {
           // if enter product id not found then redirected to search page
           if( !field || !production || !quality || !transport){
             errors.push({ msg: 'Details not found for this productID'});
@@ -66,12 +68,14 @@ router.post('/search', (req, res) => {
                "field": field,
                "production": production,
                "quality": quality,
-               "transport": transport
+               "transport": transport,
+               "blockChain": blockChain
             })
           }
       })
     })
    })   
+  })    
   });
   }
 });

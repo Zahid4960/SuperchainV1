@@ -56,15 +56,26 @@
           <h3 class="text-center">Transport Data</h3>
         </div>
           <div style="border-bottom: 3px solid red;"></div> 
-          <tr>Transpotation Company Name: <%= transport.companyName  %></tr><br>
-          <tr>Transpotation Company Address: <%= transport.companyLocation %></tr><br>
-          <tr>Transpotation Company Contact: <%= transport.companyContact %></tr><br>
-          <tr>Veheicle Number: <%= transport.veheicleNumber %></tr><br>
-          <tr>Driver Name: <%= transport.driverName %></tr><br>
-          <tr>Driver Nid Number: <%= transport.driverNidNumber %></tr><br>
-          <tr>Driver Mobile Number: <%= transport.driverMobile %></tr><br>
-          <tr>Date: <%= transport.date %></tr><br>    
+    <div>  
+        <tr>Transpotation Company Name: <%= transport.companyName  %></tr><br>
+        <tr>Transpotation Company Address: <%= transport.companyLocation %></tr><br>
+        <tr>Transpotation Company Contact: <%= transport.companyContact %></tr><br>
+        <tr>Veheicle Number: <%= transport.veheicleNumber %></tr><br>
+        <tr>Driver Name: <%= transport.driverName %></tr><br>
+        <tr>Driver Nid Number: <%= transport.driverNidNumber %></tr><br>
+        <tr>Driver Mobile Number: <%= transport.driverMobile %></tr><br>
+        <tr>Date: <%= transport.date %></tr><br>    
     </div>
+        <div>
+          <h3 class="text-center">Blockchain Hash Code</h3>
+        </div>
+          <div style="border-bottom: 3px solid red;"></div>
+    <div>
+     <% for(var i = 0; i < blockChain.length; i++) {%>
+    <tr><%= blockChain[i].thisHash%></tr><br>
+    <% } %>
+    </div>
+   </div>
 </div>
 	<!-- footer link -->
 	<br>

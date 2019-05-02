@@ -140,13 +140,42 @@ router.post('/qrCode', ensureAuthenticated, (req, res) => {
   }
 });
 
+ // functions for blockchain technology
+ function blockChain(){
+  // for creating new block, calculate hash and previous hash
+  class Block {
+          constructor(index, timestamp, productID, prevHash) {
+          this.index = index;
+          this.timestamp = timestamp;
+          this.productID = productID;
+          this.prevHash = prevHash;
+          this.thisHash = sha256(this.index + this.timestamp + this.data);
+    }
+  }
+    const createGenesisBlock = () => new Block(0, Date.now(), 'Genesis Block', '0');
+    const nextBlock = (lastBlock, productID) =>
+    new Block(lastBlock.index + 1, Date.now(), productID, lastBlock.thisHash);
+    const createBlockchain = num => {
+    const blockchain = [createGenesisBlock()];
+    let previousBlock = blockchain[0];
+    for (let i = 1; i < num; i += 1) {
+      const blockToAdd = nextBlock(previousBlock, productID);
+      blockchain.push(blockToAdd);
+      previousBlock = blockToAdd;
+    }
+    console.log(blockchain);
+  };
+    const lengthToCreate = 2;
+    createBlockchain(lengthToCreate);
+ }
+              
+
 // blockchain page for get method
 router.get('/blockchain', ensureAuthenticated,(req, res) => 
   res.render('blockchain', {
     user: req.user
     })
   );
-
 
 // blockchain page for post method
 router.post('/blockchain', ensureAuthenticated, (req, res) => {
@@ -164,55 +193,32 @@ router.post('/blockchain', ensureAuthenticated, (req, res) => {
         let transport = Transport.findOne({ productID: search }).then( transport => {
           // if enter product id not found then redirected to blockchain page
           if( !field || !production || !quality || !transport){
-            errors.push({ msg: 'Details not found for this productID so qr code cannot be generated'});
+            errors.push({ msg: 'Details not found for this productID so data cannot be uploaded to blockchain'});
             res.render('blockchain', {errors});
           }
-          // if all goes well then show the details of the blockchian
+          // if all goes well then data will be uploaded to blockchain
           else{
-            const productID = field.productID;
-            const productName = field.productName;
-            class Block {
-                  constructor(index, timestamp, productID, prevHash) {
-                  this.index = index;
-                  this.timestamp = timestamp;
-                  this.productID = productID;
-                  this.prevHash = prevHash;
-                  this.thisHash = sha256(
-                  this.index + this.timestamp + this.data + this.prevHash
-               );
-            }
-          }
-            const createGenesisBlock = () => new Block(0, Date.now(), 'Genesis Block', '0');
+               // generate hash and store it into thisHash variable 
+                const thisHash =  sha256(1 + Date.now() + transport.productID );
+                const productID = transport.productID;
+                const productName = transport.productName;
 
-            const nextBlock = (lastBlock, productID) =>
-            new Block(lastBlock.index + 1, Date.now(), productID, lastBlock.thisHash);
-
-            const createBlockchain = num => {
-            const blockchain = [createGenesisBlock()];
-            let previousBlock = blockchain[0];
-
-            for (let i = 1; i < num; i += 1) {
-              const blockToAdd = nextBlock(previousBlock, productID);
-              blockchain.push(blockToAdd);
-              previousBlock = blockToAdd;
-            }
-
-            console.log(blockchain);
-
-           
-          };
-            const lengthToCreate = 2;
-            createBlockchain(lengthToCreate);
-
-       }
+                const newBlockchain = new Blockchain({
+                productID,
+                productName,
+                thisHash
+              });
+               newBlockchain.save().then( blockchian =>{
+                 req.flash('success_msg',
+                'Data successfully uploaded to blockchian!!!');
+                 res.redirect('/dashboard');
+               });
+           }
       })
     })
    })   
   });
   }
 });
-
-
-
 
 module.exports = router;

@@ -17,18 +17,6 @@ const BlockchainSchema = mongoose.Schema({
 	productName:{
 		type: String
 	},
-	/* For blockchains's index */
-    index: {
-		type: String
-	},
-	/* For blockchains's timestamp */
-    timestamp: {
-		type: String
-	},
-	/* For blockchains's previous hash */
-    prevHash: {
-		type: String
-	},
 	/* For blockchains's current hash */
     thisHash: {
 		type: String
