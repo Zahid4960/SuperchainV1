@@ -2,125 +2,71 @@
 	<div><% include ./partials/externalHeader %></div>
   <br>
   <br>
-  <div class="container">
-     <h4 class="text-center">Product ID: <%= field.productID %></h4>
-     <h4 class="text-center">Product Name: <%= field.productName %></h4>
-  </div>
-  <br>
-  <div class="container">
-         <h5 class="text-center">Field Data</h5>
-  </div>
-  <br>
-  <div class="container">
-    <!-- table for searched field data -->
-    <table class="table table-striped">
-          <thead>
-             <tr>
-                 <th scope="col">Field Location</th>
-                 <th scope="col">Farmer Name</th>
-                 <th scope="col">Farmer Mobile</th>
-                 <th scope="col">Farmer NID</th>
-                 <th scope="col">Date</th>
-               </tr>
-             </thead>
-                <tr>
-                  <td><%= field.fieldLocation %></td>
-                  <td><%= field.farmerName %></td>
-                  <td><%= field.farmerMobile %></td>
-                  <td><%= field.farmerNid %></td>
-                  <td><%= field.date %></td>
-            </tr> 
-         </table>
-  </div>     
-  <br>
-  <!-- table for searched production data-->
-  <div class="container">
-    <h5 class="text-center">Production Data</h5>
-  </div>
-  <br>
-  <div class="container">
-    <table class="table table-striped">
-          <thead>
-             <tr>
-                <th scope="col">Company Name</th>
-                <th scope="col">Company Address</th>
-                <th scope="col">Facctory Address</th>
-                <th scope="col">ISO Number</th>
-                <th scope="col">Contacts</th>
-                <th scope="col">Date</th>
-               </tr>
-             </thead>
-                <tr>
-                  <td><%= production.companyName %></td>
-                  <td><%= production.companyLocation %></td>
-                  <td><%= production.factoryLocation %></td>
-                  <td><%= production.companyIsoNumber %></td>
-                  <td><%= production.companyContact %></td>
-                  <td><%= production.date %></td>
-            </tr>
-    </table>
-  </div>
-  <br>
-    <!-- table for searched quality data -->
-    <div class="container">
-      <h5 class="text-center">Quality Control</h5>
-    </div>  
-    <br>
-    <div class="container">
-      <table class="table table-striped">
-        <thead>
-             <tr>
-                <th scope="col">Quality Control Tests</th>
-                <th scope="col">Quality Tests</th>
-                <th scope="col">Quality Controller Name</th>
-                <th scope="col">Quality Controller Nid Number</th>
-                <th scope="col">Quality Controller Contact</th>
-                <th scope="col">Date</th>
-               </tr>
-             </thead>
-                <tr>
-                  <td><%= quality.qcTests %></td>
-                  <td><%= quality.qcResult %></td>
-                  <td><%= quality.qcName %></td>
-                  <td><%= quality.qcNidNumber %></td>
-                  <td><%= quality.qcContact %></td>
-                  <td><%= quality.date %></td>
-              </tr>
-      </table>
+  <!--Style for card-->
+<style type="text/css">
+  .card:hover{
+    box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
+}
+</style>
+<div class="col-4-sm">
+  <div class="card" style="width: 40rem; margin-left: 25%; margin-top: 2%">
+    <!-- for showing image (where product id == image name(product id) + .png)-->
+  <img class="card-img-top"  src="http://localhost:5000/images/<%= field.productID %>.jpg" style="height: 300px; width: 100%; border: 5px solid gray;">
+  <div class="card-body">
+    <p>
+      <tr><h3 class="text-center"><%= field.productID %></h3></tr>
+      <tr><h3 class="text-center"><%= field.productName %></h3></tr>
+    </p>
+    <div>
+      <h3 class="text-center">Field Data</h3>
     </div>
-    <br>
-    <!-- Table for searched transport dat -->
-    <div class="container">
-      <h5 class="text-center">Transport Data</h5>
+      <div style="border-bottom: 3px solid red;"></div>
+    <div>
+       <tr>Field Location: <%= field.fieldLocation %></tr><br>
+       <tr>Farmer Name: <%= field.farmerName %></tr><br>
+       <tr>Farmer Mobile: <%= field.farmerMobile %></tr><br>
+       <tr>Farmer Nid: <%= field.farmerNid %></tr><br>
+       <tr>Date: <%= field.date %></tr><br>
+    </div>   
+        <div>
+          <h3 class="text-center">Production Data</h3>
+        </div>
+          <div style="border-bottom: 3px solid red;"></div>
+    <div>
+         <tr>Company Name: <%= production.companyName %></tr><br>
+         <tr>Company Address: <%= production.companyLocation %></tr><br>
+         <tr>Facctory Address: <%= production.factoryLocation %></tr><br>
+         <tr>ISO Number: <%= production.companyIsoNumber %></tr><br>
+         <tr>Contacts: <%= production.companyContact %></tr><br>
+         <tr>Date: <%= production.date %></tr><br>
     </div>
-    <br>
-    <div class="container">
-      <table class="table table-striped">
-        <thead>
-             <tr>
-                <th scope="col">Transpotation Company Name</th>
-                <th scope="col">Transpotation Company Address</th>
-                <th scope="col">Transpotation Company Contact</th>
-                <th scope="col">Veheicle Number</th>
-                <th scope="col">Driver Name</th>
-                <th scope="col">Driver Nid Number</th>
-                <th scope="col">Driver Mobile Number</th>
-                <th scope="col">Date</th>
-               </tr>
-             </thead>
-                <tr>
-                  <td><%= transport.companyName %></td>
-                  <td><%= transport.companyLocation %></td>
-                  <td><%= transport.companyContact %></td>
-                  <td><%= transport.veheicleNumber %></td>
-                  <td><%= transport.driverName %></td>
-                  <td><%= transport.driverNidNumber %></td>
-                  <td><%= transport.driverMobile %></td>
-                  <td><%= transport.date %></td>
-            </tr>
-      </table>
+        <div>
+          <h3 class="text-center">Quality Control Data</h3>
+        </div>
+          <div style="border-bottom: 3px solid red;"></div>
+    <div>
+       <tr>Quality Control Tests: <%= quality.qcTests %></tr><br>
+       <tr>Quality Test Result: <%= quality.qcResult %></tr><br>
+       <tr>Quality Controller Name: <%= quality.qcName %></tr><br>
+       <tr>Quality Controller Nid Number: <%= quality.qcNidNumber %></tr><br>
+       <tr>Quality Controller Contact: <%= quality.qcContact %></tr><br>
+       <tr>Date: <%= quality.date %></tr><br>
+    </div> 
+        <div>
+          <h3 class="text-center">Transport Data</h3>
+        </div>
+          <div style="border-bottom: 3px solid red;"></div> 
+          <tr>Transpotation Company Name: <%= transport.companyName  %></tr><br>
+          <tr>Transpotation Company Address: <%= transport.companyLocation %></tr><br>
+          <tr>Transpotation Company Contact: <%= transport.companyContact %></tr><br>
+          <tr>Veheicle Number: <%= transport.veheicleNumber %></tr><br>
+          <tr>Driver Name: <%= transport.driverName %></tr><br>
+          <tr>Driver Nid Number: <%= transport.driverNidNumber %></tr><br>
+          <tr>Driver Mobile Number: <%= transport.driverMobile %></tr><br>
+          <tr>Date: <%= transport.date %></tr><br>    
     </div>
+</div>
 	<!-- footer link -->
 	<br>
 	<br>
-   <div class="container"><% include ./partials/footer %></div>
+<div class="container"><% include ./partials/footer %></div>
